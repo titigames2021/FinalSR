@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
                
 
                
-                SceneManager.LoadScene(8);
+                SceneManager.LoadScene(7);
                 Cursor.visible = true;
                 break;
 
@@ -99,14 +99,14 @@ public class GameManager : MonoBehaviour
                
 
                 
-                SceneManager.LoadScene(8);
+                SceneManager.LoadScene(7);
                 Cursor.visible = true;
 
                 break;
 
             case 7:
                
-                SceneManager.LoadScene(8);
+                SceneManager.LoadScene(7);
                 Cursor.visible = true;
 
                 break;

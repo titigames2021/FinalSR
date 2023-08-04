@@ -7116,6 +7116,10 @@ PrefabInstance:
       value: $$$PLAYER$$$
       objectReference: {fileID: 0}
     - target: {fileID: 3538656249480399965, guid: 8c3dc22a9a20a584e9404639c09388b4, type: 3}
+      propertyPath: boos
+      value: 
+      objectReference: {fileID: 6512445624756677506}
+    - target: {fileID: 3538656249480399965, guid: 8c3dc22a9a20a584e9404639c09388b4, type: 3}
       propertyPath: boosDoor
       value: 
       objectReference: {fileID: 1157463490}

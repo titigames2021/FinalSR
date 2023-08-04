@@ -2,14 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Scroll : MonoBehaviour
 {
     public float speed;
-    private bool isBossStopped = false;
+    public bool isBossStopped = false;
     public float stopPoint;
     public GameObject player;
    
@@ -123,9 +122,9 @@ public class Scroll : MonoBehaviour
             bosscript.bossDefeatEvent += ToFinal;
 
         }
-        
 
 
+       
 
 
     }
@@ -148,7 +147,7 @@ public class Scroll : MonoBehaviour
         }
 
 
-
+        
 
 
 
@@ -192,7 +191,7 @@ public class Scroll : MonoBehaviour
 
 
 
-                if (player.transform.position.x >= 650.0f && !isBossStopped)
+                if (player.transform.position.x >= 654.0f && !isBossStopped)
                 {
 
                     BossStop();
@@ -242,16 +241,10 @@ public class Scroll : MonoBehaviour
 
 
 
-        
-
-
-
-       
-
      
 
 
-
+           
 
     }
 

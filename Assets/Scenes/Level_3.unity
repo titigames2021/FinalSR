@@ -164,7 +164,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1442769785810139979, guid: 8c3dc22a9a20a584e9404639c09388b4, type: 3}
       propertyPath: life
-      value: 99999
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1442769785810139979, guid: 8c3dc22a9a20a584e9404639c09388b4, type: 3}
       propertyPath: swordTrigger
@@ -172,7 +172,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1442769785810139979, guid: 8c3dc22a9a20a584e9404639c09388b4, type: 3}
       propertyPath: currentEnergy
-      value: 89.86
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1442769785810139979, guid: 8c3dc22a9a20a584e9404639c09388b4, type: 3}
       propertyPath: swordlay.m_Bits
@@ -6521,6 +6521,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy3_3
       objectReference: {fileID: 0}
+    - target: {fileID: 9020518202619034317, guid: d6d90b54a09c5fe419dec4938f9bc8d1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9020518202619034320, guid: d6d90b54a09c5fe419dec4938f9bc8d1, type: 3}
       propertyPath: life
       value: 14.37
@@ -6541,6 +6545,10 @@ PrefabInstance:
       propertyPath: scrollt
       value: 
       objectReference: {fileID: 1220549508}
+    - target: {fileID: 9020518202619034320, guid: d6d90b54a09c5fe419dec4938f9bc8d1, type: 3}
+      propertyPath: isActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9020518202619034320, guid: d6d90b54a09c5fe419dec4938f9bc8d1, type: 3}
       propertyPath: activationDistance
       value: 5

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3580008064748450382}
   m_Layer: 0
   m_Name: Player's Pool 3
-  m_TagString: Untagged
+  m_TagString: playerpool3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3580008065030776472}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3580008064748450382
 MonoBehaviour:
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23196a4a9cf538947a02477a87d82694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pooledObject: {fileID: 5865003374416682466, guid: c326089c6799d6b42bb1cb60c545b6b5, type: 3}
+  pooledObject: {fileID: 2335342042112513797, guid: 8f5bdb663e6fa904eb6a2fdafe7ba2ed, type: 3}
   poolMaxSize: 5
   pooledObjectsList: []
   willGrow: 1
@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 3580008065016899176}
   m_Layer: 0
   m_Name: Player's Pool Charged
-  m_TagString: Untagged
+  m_TagString: playerpoolcharged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129,8 +129,9 @@ Transform:
   - {fileID: 3580008065051253021}
   - {fileID: 3580008065108714418}
   - {fileID: 3580008065016899183}
+  - {fileID: 6167637067175107216}
   - {fileID: 3580008064748450381}
-  - {fileID: 3580008065938484998}
+  - {fileID: 6167637067810986893}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -195,7 +196,7 @@ GameObject:
   - component: {fileID: 3580008065108714419}
   m_Layer: 0
   m_Name: Player's Pool
-  m_TagString: Untagged
+  m_TagString: playerpool
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -232,7 +233,7 @@ MonoBehaviour:
   pooledObjectsList: []
   willGrow: 1
   bulletType: 0
---- !u!1 &3580008065938484997
+--- !u!1 &6167637067175107217
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -240,44 +241,93 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3580008065938484998}
-  - component: {fileID: 3580008065938484999}
+  - component: {fileID: 6167637067175107216}
+  - component: {fileID: 6167637067175107231}
   m_Layer: 0
-  m_Name: B02Pool
+  m_Name: RockPool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3580008065938484998
+--- !u!4 &6167637067175107216
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3580008065938484997}
+  m_GameObject: {fileID: 6167637067175107217}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -117.04281, y: -24.486277, z: 9.295836}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3580008065030776472}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3580008065938484999
+--- !u!114 &6167637067175107231
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3580008065938484997}
+  m_GameObject: {fileID: 6167637067175107217}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23196a4a9cf538947a02477a87d82694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pooledObject: {fileID: 6593993473160165216, guid: ca9b8383e3c5960449c1995cad5f933c, type: 3}
-  poolMaxSize: 5
+  pooledObject: {fileID: 5011836578856084515, guid: f7c73d7317989414395252cb3b5948b3, type: 3}
+  poolMaxSize: 20
+  pooledObjectsList: []
+  willGrow: 1
+  bulletType: 0
+--- !u!1 &6167637067810986894
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6167637067810986893}
+  - component: {fileID: 6167637067810986892}
+  m_Layer: 0
+  m_Name: BoosPool
+  m_TagString: EnemyPool
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6167637067810986893
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6167637067810986894}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -117.04281, y: -24.486277, z: 9.295836}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3580008065030776472}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6167637067810986892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6167637067810986894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23196a4a9cf538947a02477a87d82694, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObject: {fileID: 9062466455736580258, guid: c2f5bf00143457e439eadadac98aa9cd, type: 3}
+  poolMaxSize: 10
   pooledObjectsList: []
   willGrow: 1
   bulletType: 0
