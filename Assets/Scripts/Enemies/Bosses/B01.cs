@@ -27,19 +27,23 @@ public class B01 : EnemyBase
     public float limitDown;
 
     public GameObject weakSpot1;
+    public Animator WPR_Animator;
     public GameObject weakSpot2;
+    public Animator WPL_Animator;
     public GameObject weakSpot3;
+    
+    public Animator bossAnimator;
 
-    private int lifeWS1=8;
-    private int lifeWS2=8;
-   public int lifeWS3=8;
+    private int lifeWS1=15;
+    private int lifeWS2=15;
+    public int lifeWS3=5;
 
 
    
     public bool shootThunder;
-    private bool lookingRight;
-    private bool lookingUP;
-    private bool lookingLeft;
+    public bool lookingRight;
+    public bool lookingUP;
+    public bool lookingLeft;
     
     public bool canMove;
     private float stopUP = -0.7071068f;
@@ -76,7 +80,7 @@ public class B01 : EnemyBase
     private bool minimumTimeA2Finish;
 
 
-
+    
 
     // Start is called before the first frame update
     void Start()
@@ -87,6 +91,7 @@ public class B01 : EnemyBase
 
         startSpeed = speed;
         lookingLeft = true;
+       
 
     }
 
@@ -142,12 +147,15 @@ public class B01 : EnemyBase
 
         if(lifeWS1 <= 0)
         {
-            weakSpot1.SetActive(false);
+           
+            Debug.Log("boom");
+            StartCoroutine(DestroyWS1());
         }
 
         if (lifeWS2 <= 0)
         {
-            weakSpot2.SetActive(false);
+           
+            StartCoroutine(DestroyWS2());
         }
 
         if (lifeWS3 <= 0)
@@ -163,6 +171,22 @@ public class B01 : EnemyBase
 
 
     }
+
+    private IEnumerator DestroyWS1()
+    {
+        WPR_Animator.SetTrigger("D");
+        bossAnimator.SetTrigger("hit");
+        yield return new WaitForSeconds(2.0f);
+        weakSpot1.SetActive(false);
+    }
+    private IEnumerator DestroyWS2()
+    {
+        WPL_Animator.SetTrigger("d");
+        bossAnimator.SetTrigger("hit");
+        yield return new WaitForSeconds(2.0f);
+        weakSpot2.SetActive(false);
+    }
+
 
     private void MindAttack01()
     {
@@ -398,7 +422,7 @@ public class B01 : EnemyBase
           
             gameObject.transform.Rotate(0.0f, 0.0f, -10.0f * Time.deltaTime * rotationSpeed, Space.Self);
 
-            if (gameObject.transform.rotation.z <= stopUP)
+            if (gameObject.transform.rotation.z <= stopUP)// ESTO ES LO QUE TIENE QUE FALLAR
             {
                 Debug.Log("stopppppppp");
 
@@ -410,7 +434,7 @@ public class B01 : EnemyBase
             }
         }
 
-
+        /*
 
         if (lookingRight)
         {
@@ -429,7 +453,7 @@ public class B01 : EnemyBase
             }
         }
 
-
+        */
 
 
 
@@ -489,8 +513,8 @@ public class B01 : EnemyBase
         {
             
             gameObject.transform.Rotate(0.0f, 0.0f, 10.0f * Time.deltaTime * rotationSpeed, Space.Self);
-
-            if (gameObject.transform.rotation.z >=  stopRight)
+            
+            if (Mathf.Abs(gameObject.transform.rotation.z) >= stopRight)
             {
                 Debug.Log("stopppppppp");
 

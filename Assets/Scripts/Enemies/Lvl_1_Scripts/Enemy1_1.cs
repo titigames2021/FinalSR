@@ -23,21 +23,22 @@ public class Enemy1_1 : EnemyBase
         FindPool();
         goingUp = true;
         canShoot = true;
+
+        GetAnimator();
+
+        GetCollider();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Life
+       
         CheckLife();
-
-
         DistacePlayer();
         DisableEnemy();
-
         ActiveEnemy();
-        
 
+     
 
 
         if (isActive)
@@ -74,17 +75,26 @@ public class Enemy1_1 : EnemyBase
 
     }
 
-    private void LateUpdate()
+
+    
+
+
+
+
+
+
+
+    public void NewShoot()
     {
 
-
-        if (canShoot & isActive)
+       if(isActive)
         {
+
             Shoot();
+
         }
-
-
-
+      
+       
     }
     private void GoingDown()
     {

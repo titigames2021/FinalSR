@@ -9,6 +9,7 @@ public class BossProjectile : MonoBehaviour
     public float lifeTime;
     private float currentTime;
     public GameObject[] powerUps;
+    private bool playerBullet;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,14 +37,21 @@ public class BossProjectile : MonoBehaviour
         objRb = gameObject.GetComponent<Rigidbody2D>();
         objRb.velocity = Vector2.zero;
         gameObject.SetActive(false);
-        int randomNum = UnityEngine.Random.Range(0, powerUps.Length);
-        Instantiate(powerUps[randomNum], transform.position, Quaternion.identity);
+        if (playerBullet)
+        {
+            int randomNum = UnityEngine.Random.Range(0, powerUps.Length);
+            Instantiate(powerUps[randomNum], transform.position, Quaternion.identity);
+            playerBullet = false;
+        }
+       
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
-
+           if(collision.collider.gameObject.layer == 3) { 
+            playerBullet= true;
+           }
         
             Invoke("Reset", 0.0f);
 

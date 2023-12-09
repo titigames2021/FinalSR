@@ -12,7 +12,7 @@ public class B03 : EnemyBase
     public GameObject WS3;
     public Transform[] limits;   //Left Rigth  Down Up
     private bool isactive;
-
+    public bool bossIsDead;
     public delegate void bossDefeatEventHandler();
     public event bossDefeatEventHandler bossDefeatEvent;
     private void Start()
@@ -23,8 +23,7 @@ public class B03 : EnemyBase
     // Update is called once per frame
     void Update()
     {
-        DistacePlayer();
-        ActiveEnemy();
+        
         if (isActive)
         {
             transform.Translate(Vector3.right * speed * Time.deltaTime);
@@ -136,11 +135,7 @@ public class B03 : EnemyBase
     {
         if (isactive)
         {
-            if (bossDefeatEvent != null)
-            {
-
-                bossDefeatEvent();
-            }
+            bossIsDead = true;
 
         }
     }

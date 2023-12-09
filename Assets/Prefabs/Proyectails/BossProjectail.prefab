@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1da0dad91a5c73d408344e6cd6acf03f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 3
+  lifeTime: 4
   powerUps:
   - {fileID: 4503748923049550812, guid: 947c72a0708c746438e5fc194c058317, type: 3}
   - {fileID: 68191413067816561, guid: bd530bfd620277f4e89ea5b951755fb4, type: 3}

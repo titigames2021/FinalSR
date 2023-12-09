@@ -13,6 +13,8 @@ public class Enemy2_1 :EnemyBase
         FindPlayer();
         FindPlayerShip();
         canShoot = true;
+        _animator = GetComponent<Animator>();
+        GetCollider();
     }
 
     // Update is called once per frame

@@ -19,6 +19,8 @@ public class Enemy1_3 : EnemyBase
         FindPlayer();
         goingUp = true;
         canShoot = true;
+        _animator = GetComponent<Animator>();
+        GetCollider();
     }
 
     // Update is called once per frame

@@ -28,6 +28,9 @@ public class Enemy3 : EnemyBase
 
         FindPlayer();
         canShoot = true;
+        GetCollider();
+        GetAnimator();
+
     }
 
     // Update is called once per frame
@@ -66,17 +69,36 @@ public class Enemy3 : EnemyBase
         
     }
 
-    private void LateUpdate()
+    public void NewShoot()
     {
-
-        //Activation
-        if (canShoot & isActive)
+        if (isActive)
         {
             Shoot();
+
         }
+
+
 
     }
 
+
+
+
+
+    /*
+   private void LateUpdate()
+   {
+
+       Shoot();
+
+       //Activation
+       if (canShoot & isActive)
+       {
+
+       }
+      
+}
+     */
     private void MindShoot()
     {
        

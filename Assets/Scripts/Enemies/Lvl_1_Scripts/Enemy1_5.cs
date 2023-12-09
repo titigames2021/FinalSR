@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+
 
 public class Enemy1_5 : EnemyBase
 {
@@ -19,8 +21,11 @@ public class Enemy1_5 : EnemyBase
     public bool spawned;
     private bool isactive;
 
-    public delegate void bossEventHandler();
-    public event bossEventHandler bossEvent;
+    //public delegate void bossEventHandler();
+    //public event bossEventHandler bossEvent;
+
+    
+    public bool placeholderbool;
     private void Start()
     {
         FindPool();
@@ -28,21 +33,24 @@ public class Enemy1_5 : EnemyBase
         canShoot = true;
         startSpeed = speed;
         gameObject.SetActive(false);
+        //miEvento.AddListener(MiFuncion);
+        GetCollider();
+
+
     }
+
+  
 
 
     // Update is called once per frame
     void Update()
     {
+        
         if (gameObject.active)
         {
             isactive = true;
         }
-        Debug.Log("player:"+playerPos.transform.position);
-        if (submarinelife <= 0)
-        {
-            gameObject.SetActive(false);
-        }
+        
         slowPoint = playerPos.position.x + 5.0f;
         if (transform.position.x >= slowPoint && timer>=timelimit)
         {
@@ -125,22 +133,12 @@ public class Enemy1_5 : EnemyBase
         {
 
             submarinelife--;
+            placeholderbool = true;
+            gameObject.SetActive(false);
         }
     }
 
-    private void OnDisable()
-    {
-        if (isactive)
-        {
-            if (bossEvent != null)
-            {
-
-                bossEvent();
-            }
-
-        }
-      
-    }
+   
 
     private void OnEnable()
     {

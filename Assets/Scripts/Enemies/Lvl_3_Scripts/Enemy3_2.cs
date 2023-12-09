@@ -30,6 +30,7 @@ public class Enemy3_2 : EnemyBase
 
         FindPlayer();
         canShoot = true;
+        GetCollider();
     }
 
     // Update is called once per frame

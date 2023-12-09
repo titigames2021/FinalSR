@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using System;
+using System.Diagnostics;
+
 public class Enemy3_3 : EnemyBase
 {
     public Transform gun;
@@ -10,11 +13,14 @@ public class Enemy3_3 : EnemyBase
     private Transform thr1;
     public Transform upPoint;
     public Transform downPoint;
-    public delegate void  toWaterEventHandler();
-    public event toWaterEventHandler waterEvent;
+    //public delegate void  toWaterEventHandler();
+    //public event toWaterEventHandler waterEvent;
+    //public event EventHandler OnWater;
     public Transform limitx;
     private float startspeed;
     public GameObject sword;
+
+    public bool toWaterBoat;
   
     private void Start()
     {
@@ -24,6 +30,7 @@ public class Enemy3_3 : EnemyBase
         canShoot = true;
         thr1 = throwpoint;
         startspeed = speed;
+        GetCollider();
     }
 
 
@@ -71,6 +78,14 @@ public class Enemy3_3 : EnemyBase
             
         }
 
+
+        if (life <= 0)
+        {
+            Instantiate(sword, gameObject.transform.position, Quaternion.identity);
+            //OnWater?.Invoke(this, EventArgs.Empty);
+            toWaterBoat = true;
+        }
+
     }
     private void LateUpdate()
     {
@@ -85,11 +100,17 @@ public class Enemy3_3 : EnemyBase
 
     private void OnDisable()
     {
-        Instantiate(sword, gameObject.transform.position, Quaternion.identity);
+        /*
         if (waterEvent != null)
         {
             waterEvent();
         }
+        */
+
+
+
+
+        //Destroy(gameObject);
     }
 
 

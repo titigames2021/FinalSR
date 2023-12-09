@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Scroll : MonoBehaviour
 {
+    
     public float speed;
     public bool isBossStopped = false;
     public float stopPoint;
@@ -31,7 +33,7 @@ public class Scroll : MonoBehaviour
    
     public Transform lvlcompletedPoint;
     public int currentLevel;
-    public GameObject boos;
+    
     private GameObject lvlcompletedPoint_obj;
     public bool towater;
 
@@ -41,8 +43,14 @@ public class Scroll : MonoBehaviour
     public bool toboss;
     private bool bossdefeated;
 
+    public GameObject placeholder;
 
 
+
+    public Enemy1_5 submarine_script;
+    public Enemy3_3 boat;
+    public GameObject boos;
+    public B03 boss3;
     // Start is called before the first frame update
     void Start()
     {
@@ -76,30 +84,26 @@ public class Scroll : MonoBehaviour
 
                 break;
 
-
+ 
             case 4:
                 currentLevel = 4;
 
+
+           
                 break;
+
 
             case 5:
                 currentLevel = 5;
+
+
 
                 break;
 
             case 6:
                 currentLevel = 6;
 
-                break;
 
-
-            case 7:
-                currentLevel = 7;
-
-                break;
-
-            case 8:
-                currentLevel = 8;
 
                 break;
 
@@ -107,30 +111,18 @@ public class Scroll : MonoBehaviour
         }
 
 
-
-
-        //EVENTS 
-        if(currentLevel==4)
-        {
-            Enemy3_3 boat = FindObjectOfType<Enemy3_3>();
-            boat.waterEvent += ToWater;
-
-            Enemy1_5 submarine_script = FindObjectOfType<Enemy1_5>();
-            submarine_script.bossEvent += ToBoss;
-
-            B03 bosscript = FindObjectOfType<B03>();
-            bosscript.bossDefeatEvent += ToFinal;
-
-        }
 
 
        
 
 
+
+
+
     }
 
- 
-
+   
+    //ESTO ESTA FATALLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
     // Update is called once per frame
     void Update()
     {
@@ -159,7 +151,8 @@ public class Scroll : MonoBehaviour
         {
             //STAGE 1
             case 2:
-            case 5:
+            case 3:
+                
 
                 if (!boos.active)
                 {
@@ -168,7 +161,7 @@ public class Scroll : MonoBehaviour
                 }
 
 
-                if (gameObject.transform.position.x >= 490.0f && !isBossStopped)
+                if (gameObject.transform.position.x >= 497.0f && !isBossStopped)
                 {
 
                     BossStop();
@@ -181,8 +174,8 @@ public class Scroll : MonoBehaviour
 
                 break;
 
-            case 3:
-            case 6:
+            case 15:
+          
                 if (!boos.active)
                 {
                     speed = startSpeed;
@@ -208,8 +201,9 @@ public class Scroll : MonoBehaviour
                 break;
 
             //STAGE 3
-            case 4:
-            case 7:
+            case 9:
+            
+               
                 if (transform.position.x >= dp1.position.x && transform.position.y >= hp2.position.y)
                 {
                     
@@ -231,9 +225,35 @@ public class Scroll : MonoBehaviour
                     skyPos.x = player.transform.position.x + 20.0f;
                     movingSky.transform.position = skyPos;
                 }
+                if (submarine_script.placeholderbool)
+                {
+                    
+                    submarine_script.placeholderbool = false;
+
+                    ToBoss();
+
+
+                }
+
+                if (boat.toWaterBoat)
+                {
+                    ToWater();
+                }
+
+                if (boss3.bossIsDead)
+                {
+                    ToFinal();
+                }
 
 
                 break;
+
+
+
+
+
+
+
 
 
         }
@@ -241,8 +261,8 @@ public class Scroll : MonoBehaviour
 
 
 
-     
 
+       
 
            
 
@@ -292,17 +312,18 @@ public class Scroll : MonoBehaviour
 
     private void ToBoss()
     {
-        toboss = true;
+        
+      
         if (!boos.activeSelf)
         {
             boos.SetActive(true);
         }
-
+        
     }
 
     private void ToFinal()
     {
-        bossdefeated = true;
+      
 
 
 
@@ -313,5 +334,12 @@ public class Scroll : MonoBehaviour
 
 
 
+    }
+
+
+    private void OnDisable()
+    {
+       
+        Destroy(gameObject);
     }
 }

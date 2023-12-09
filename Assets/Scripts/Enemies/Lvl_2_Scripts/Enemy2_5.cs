@@ -21,6 +21,7 @@ public class Enemy2_5 : EnemyBase
         FindPool();
         canShoot = true;
         leftSide = true;
+        GetCollider();
     }
     private void LateUpdate()
     {

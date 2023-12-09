@@ -10,7 +10,7 @@ public class PlayerProjectail : MonoBehaviour
  
     public LayerMask playerproj;
     public LayerMask crosseable;
- 
+    
   
     // Start is called before the first frame update
     void Start()
@@ -18,6 +18,7 @@ public class PlayerProjectail : MonoBehaviour
       
         Physics2D.IgnoreLayerCollision(gameObject.layer, gameObject.layer);
         Physics2D.IgnoreLayerCollision(gameObject.layer, 12);
+       
 
     }
 

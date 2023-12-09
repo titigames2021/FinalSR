@@ -18,6 +18,7 @@ public class Enemy1_4 : EnemyBase
     void Start()
     {
         FindPlayer();
+        GetCollider();
     }
 
     // Update is called once per frame

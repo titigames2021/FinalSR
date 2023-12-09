@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.Processors;
 
 public class EnemyBase : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class EnemyBase : MonoBehaviour
     public float activationDistance;
     public float coolDownTime;
     public bool isActive;
+    public bool isDead;
     protected float disableDistance=-30.0f;
     //public float lifeTime;
     //public float lifeTimeLimit;
@@ -25,7 +27,24 @@ public class EnemyBase : MonoBehaviour
     public LayerMask enemyLayer;
     public GameObject[] PowerUps;
     public Transform playerShip;
+    public Animator _animator;
+    private float testn;
+    private bool isExplode;
+    private bool b_powerUpDroped;
+    public Collider2D enemyColl;
+    
 
+
+     public void GetCollider()
+    {
+
+        enemyColl = GetComponent<Collider2D>();
+    }
+
+    public void GetAnimator()
+    {
+        _animator = GetComponent<Animator>();
+    }
 
     public void Disable()
     {
@@ -61,23 +80,34 @@ public class EnemyBase : MonoBehaviour
     {
         if (life <= 0)
         {
-           
-            int randomNum = UnityEngine.Random.Range(0, PowerUps.Length);
-            isActive = false;
-            
-            gameObject.SetActive(false);
-            CancelInvoke();
-            Vector3 pos = gameObject.transform.position;
 
-            if (PowerUps.Length > 0)
-            {
-                Instantiate(PowerUps[randomNum], pos, Quaternion.identity);
-            }
+           StartCoroutine(ExplodeAnimation());
+
+            int randomNum = UnityEngine.Random.Range(0, PowerUps.Length);
+                isActive = false;
+              
+                CancelInvoke();
+                Vector3 pos = gameObject.transform.position;
+                pos.y = pos.y -1.5f;
+                pos.x = pos.x + 2.5f;
+
+
+            if (PowerUps.Length > 0 && !b_powerUpDroped)   
+                {
+                    Instantiate(PowerUps[randomNum], pos, Quaternion.identity);
+                    b_powerUpDroped = true;
+                }
+
+
+             
+            
+            
 
             
         }
     }
 
+ 
 
     protected void ActiveEnemy()
     {
@@ -156,6 +186,8 @@ public class EnemyBase : MonoBehaviour
             if (playerproj == (playerproj | (1 << collision.gameObject.layer)))
             {
                 life--;
+               
+                
                 if (collision.gameObject.tag == "downbullet")
                 {
                     life = life - 4;
@@ -166,7 +198,10 @@ public class EnemyBase : MonoBehaviour
     }
 
 
-
+    public void OnDisable()
+    {
+        
+    }
 
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -178,4 +213,38 @@ public class EnemyBase : MonoBehaviour
             life--;
         }
     }
+
+
+
+
+
+    // Corutina para ejecutar la animación "Explode".
+    private IEnumerator ExplodeAnimation()
+    {
+        // Marca al personaje como muerto para evitar que esta corutina se ejecute más de una vez.
+        isDead = true;
+
+        //Ejecuta el trigger "Explode".
+        _animator.SetTrigger("Explode");
+        enemyColl.isTrigger = true; 
+
+        //HAY QUE DESACTIVAR EL COLLIDER 
+
+
+        // Puedes agregar un tiempo de espera (por ejemplo, 2 segundos) antes de realizar otras acciones.
+        yield return new WaitForSeconds(.4f);
+
+        // Aquí puedes realizar otras acciones después de la explosión.
+
+        // Por ejemplo, puedes desactivar el objeto o destruirlo si es necesario.
+        gameObject.SetActive(false);
+    }
+
+
+
+
+
+
+
+
 }

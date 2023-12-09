@@ -26,7 +26,8 @@ public class Enemy2_4 : EnemyBase
         FindPlayer();
         FindPool();
         canShoot = true;
-        
+        GetCollider();
+
     }
 
     // Update is called once per frame

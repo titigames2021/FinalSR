@@ -7,11 +7,13 @@ using UnityEngine.SceneManagement;
 using System;
 using static UnityEngine.Rendering.DebugUI;
 using UnityEngine.InputSystem;
+using System.Runtime.CompilerServices;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject ChargingAnimation;
     private GameObject pause_UI;
-    public SpriteRenderer spriteR;
+    private SpriteRenderer spriteR;
     public Sprite startSprite;
 
     //UI
@@ -133,9 +135,21 @@ public class PlayerController : MonoBehaviour
     public Vector2 smoothInputVelocity;
     public float smoothInputSpeed = .2f;
     private InputAction  moveAction;
+    private bool playerUp;
+    private bool playerDown;
+    public Sprite spriteUp;
+    public Sprite spriteDown;
+    private Animator _animator;
+    bool isMovingUp;
+    bool isMovingDown;
 
     private void Awake()
     {
+
+       _animator = GetComponent<Animator>();
+
+
+
         //INPUT BINDING
 
         //Movement
@@ -176,6 +190,7 @@ public class PlayerController : MonoBehaviour
             canShoot = true;
             shoot_input = shoot_performed.ReadValueAsButton();
             charging = false;
+            ChargingAnimation.SetActive(false);
             chargeCount = 0.0f;
             if (canShootCharged)
             {
@@ -360,9 +375,7 @@ public class PlayerController : MonoBehaviour
 
         startSprite = spriteR.sprite;
 
-
-
-
+       
 
         startScale = gameObject.transform.localScale;
 
@@ -422,6 +435,18 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+         isMovingUp = currentInputVector.y > 0.1f;
+         isMovingDown = currentInputVector.y < -0.1f;
+
+        //Debug.Log(isMovingUp);
+
+        _animator.SetBool("IsMovingUp", isMovingUp);
+        _animator.SetBool("IsMovingDown", isMovingDown);
+        /*
+        _animator.SetFloat("input_y", currentInputVector.y);
+        _animator.SetBool("p_up", playerUp);
+        _animator.SetBool("p_down", playerDown);
+        */
         //Debug.Log(usingMejora);
         //movement 
 
@@ -434,6 +459,10 @@ public class PlayerController : MonoBehaviour
 
         transform.Translate(move * playerSpeed * Time.deltaTime);
 
+       
+       
+
+       
 
        
         //improvised UI Managament
@@ -685,8 +714,20 @@ public class PlayerController : MonoBehaviour
         if (charging)
         {
             chargeCount += Time.deltaTime;
-            //Debug.Log(chargeCount);
+            StartCoroutine(ActiveChargingAnimation());
+            
         }
+
+
+
+
+      
+
+
+
+
+
+
         if (chargeCount >= limitchargeCount)
         {
            
@@ -698,8 +739,9 @@ public class PlayerController : MonoBehaviour
         {
             ShootCharged = false;
             canShootCharged = false;
-            
-          
+
+            ChargingAnimation.SetActive(false);
+
 
             obj = poolCharged.GetPooledObject();
             if (obj == null) return;
@@ -730,7 +772,7 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("lets dance");
             //audioS.PlayOneShot(wtSound);
-            Debug.Log(duration);
+           // Debug.Log(duration);
             duration += Time.deltaTime;
             Time.timeScale = witchTimeScale;
             playerSpeed = playerSpeedWitch;
@@ -811,6 +853,15 @@ public class PlayerController : MonoBehaviour
 
         }
 
+    }
+    private IEnumerator ActiveChargingAnimation()
+    {
+        yield return new WaitForSeconds(0.8f);
+        if (charging)
+        {
+            ChargingAnimation.SetActive(true);
+        }
+       
     }
     //WitchTimeFunctions
     private void OnTriggerStay2D(Collider2D collision)

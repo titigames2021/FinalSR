@@ -9,6 +9,9 @@ public class Enemy1_2 : EnemyBase
         FindPool();
         FindPlayer();
         canShoot = true;
+        GetCollider();
+        GetAnimator();
+
     }
 
 
@@ -31,15 +34,18 @@ public class Enemy1_2 : EnemyBase
         }
        
     }
-    private void LateUpdate()
-    {
 
-        //Activation
-        if (canShoot & isActive)
+
+    public void NewShoot()
+    {
+        if(isActive)
         {
             Shoot();
+
         }
 
+        
+
     }
-   
+
 }
